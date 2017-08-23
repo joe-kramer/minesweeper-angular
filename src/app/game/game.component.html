@@ -1,0 +1,9 @@
+<div class="gameboard" >
+  <!-- ngFor looping through 2d array of Squares to create 64 divs -->
+  <div *ngFor='let r of grid'>
+    <div *ngFor='let c of r'  class="square">
+      <h1>{{c.proximityNumber}}</h1>
+    </div>
+  </div>
+
+</div>

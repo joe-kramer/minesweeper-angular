@@ -1,0 +1,28 @@
+.gameboard{
+  background-color: salmon;
+  width: 39%;
+  margin-left: 30%;
+  display: grid;
+  grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px;
+  grid-gap: 2px;
+}
+
+.gameboard-lg{
+  display: grid;
+  grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px;
+  grid-gap: 15px;
+}
+
+.gameboard-xl{
+  display: grid;
+  grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px 65px;
+  grid-gap: 15px;
+}
+
+.square {
+  margin: 3px 3px 3px 4px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+}
