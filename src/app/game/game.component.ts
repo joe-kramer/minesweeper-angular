@@ -88,7 +88,7 @@ export class GameComponent implements OnInit {
   minesweep(square){
     square.mineswept = true;
     if (square.bomb === true){
-      console.log("BOMB");
+      alert("BOMB, you lose");
     } else {
       this.flipCounter++;
       this.hasWon(this.flipCounter, this.bombCounter, 8);
