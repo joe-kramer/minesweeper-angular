@@ -1,9 +1,9 @@
 <div class="gameboard" >
-  <!-- ngFor looping through 2d array of Squares to create 64 divs -->
   <div *ngFor='let r of grid'>
-    <div *ngFor='let c of r'  class="square">
-      <h1>{{c.proximityNumber}}</h1>
+    <div class="square" *ngFor='let c of r' (click)="minesweep(c)">
+      <h1 *ngIf='!c.mineswept'>X</h1>
+      <h1 *ngIf='c.mineswept && !c.bomb'>{{c.proximityNumber}}</h1>
+      <h1 *ngIf='c.mineswept && c.bomb'>B</h1>
     </div>
   </div>
-
 </div>

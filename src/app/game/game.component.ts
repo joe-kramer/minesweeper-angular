@@ -11,6 +11,8 @@ export class GameComponent implements OnInit {
   grid: Square[][];
   max: number = 6;
   min: number = 1;
+  bombCounter: number = 0;
+  flipCounter: number = 0;
 
   constructor() {
 
@@ -24,7 +26,8 @@ export class GameComponent implements OnInit {
         let randomBomb = Math.floor(Math.random() * (this.max - this.min) + this.min);
         this.grid[i][j] = new Square(randomBomb === 1 ? true : false);
         if (this.grid[i][j].bomb === true){
-          this.grid[i][j].proximityNumber = 666;
+          this.bombCounter++;
+          this.grid[i][j].proximityNumber = 9;
         }
       }
     }
@@ -37,37 +40,37 @@ export class GameComponent implements OnInit {
         let counter: number = 0;
         if(this.grid[r][c].bomb === false) {
           //left
-            if(c > 0 && this.grid[r][c - 1].bomb === true) {
-              counter++;
-            }
-            //Upper left
-            if(c > 0 && r > 0 && this.grid[r-1][c-1].bomb === true) {
-              counter++;
-            }
-            //Up
-            if(r > 0 && this.grid[r-1][c].bomb === true) {
-              counter++;
-            }
-            //Upper right
-            if((c < size - 1) && r > 0 && this.grid[r-1][c + 1].bomb === true) {
-              counter++;
-            }
-            //right
-            if((c < size - 1) && this.grid[r][c+1].bomb === true) {
-              counter++;
-            }
-            //bottom right
-            if((c < size - 1) && (r < size - 1) && this.grid[r+1][c+1].bomb === true) {
-              counter++;
-            }
-            //bottom
-            if((r < size - 1) && this.grid[r+1][c].bomb === true) {
-              counter++;
-            }
-            //bottom left
-            if((c > 0) && (r < size - 1) && this.grid[r+1][c-1].bomb === true) {
-              counter++;
-            }
+          if(c > 0 && this.grid[r][c - 1].bomb === true) {
+            counter++;
+          }
+          //Upper left
+          if(c > 0 && r > 0 && this.grid[r-1][c-1].bomb === true) {
+            counter++;
+          }
+          //Up
+          if(r > 0 && this.grid[r-1][c].bomb === true) {
+            counter++;
+          }
+          //Upper right
+          if((c < size - 1) && r > 0 && this.grid[r-1][c + 1].bomb === true) {
+            counter++;
+          }
+          //right
+          if((c < size - 1) && this.grid[r][c+1].bomb === true) {
+            counter++;
+          }
+          //bottom right
+          if((c < size - 1) && (r < size - 1) && this.grid[r+1][c+1].bomb === true) {
+            counter++;
+          }
+          //bottom
+          if((r < size - 1) && this.grid[r+1][c].bomb === true) {
+            counter++;
+          }
+          //bottom left
+          if((c > 0) && (r < size - 1) && this.grid[r+1][c-1].bomb === true) {
+            counter++;
+          }
 
         }
         if (this.grid[r][c].bomb === false) {
@@ -79,9 +82,24 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.initializeGrid(8)
-    // this.setNumberValues(8);
+  }
+
+  minesweep(square){
+    square.mineswept = true;
+    if (square.bomb === true){
+      console.log("BOMB");
+    } else {
+      this.flipCounter++;
+      this.hasWon(this.flipCounter, this.bombCounter, 8);
+    }
+  }
+
+  hasWon(flipCount : number, bombs : number, size : number) {
+    let totalSquares: number = size * size;
+    if (bombs + flipCount >= totalSquares ) {
+      alert("YOU WIN");
+    }
   }
 
 }

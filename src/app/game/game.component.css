@@ -1,9 +1,9 @@
 .gameboard{
   background-color: salmon;
-  width: 39%;
-  margin-left: 30%;
+  width: 50%;
+  margin-left: 28%;
   display: grid;
-  grid-template-columns: 65px 65px 65px 65px 65px 65px 65px 65px;
+  grid-template-columns: 12% 12% 12% 12% 12% 12% 12% 12%;
   grid-gap: 2px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .square {
-  margin: 3px 3px 3px 4px;
+  margin: 3px 3px 3px 8px;
   text-align: center;
   background-color: black;
   color: white;
